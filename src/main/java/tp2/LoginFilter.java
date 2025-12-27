@@ -48,8 +48,9 @@ public class LoginFilter extends HttpFilter implements Filter {
 		
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
+		
 		HttpSession session  = req.getSession(false);
-		if(session.getAttribute("username") != null) {
+		if(session != null && session.getAttribute("username") != null) {
 			chain.doFilter(request, response);
 		}else {
 			res.sendRedirect(req.getContextPath()+"/connexion.html");

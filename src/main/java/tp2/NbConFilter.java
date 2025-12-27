@@ -51,6 +51,10 @@ public class NbConFilter extends HttpFilter implements Filter {
 		
 		HttpSession session = req.getSession(false);
 		
+		if(session == null) {
+			res.sendRedirect(req.getContextPath()+"/connexion.html");
+		}
+		
 		Integer nbConnexion = (Integer) session.getAttribute("count");
 		
 		System.out.println(nbConnexion);
