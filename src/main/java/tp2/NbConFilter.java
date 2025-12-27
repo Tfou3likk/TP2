@@ -1,6 +1,7 @@
 package tp2;
 
 import jakarta.servlet.Filter;
+import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,18 +15,17 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.annotation.WebFilter;
 
 /**
- * Servlet Filter implementation class LoginFilter
+ * Servlet Filter implementation class NbConFilter
  */
 @WebFilter("/ServletWelcome")
-public class LoginFilter extends HttpFilter implements Filter {
+public class NbConFilter extends HttpFilter implements Filter {
        
     /**
      * @see HttpFilter#HttpFilter()
      */
-    public LoginFilter() {
+    public NbConFilter() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,15 +45,23 @@ public class LoginFilter extends HttpFilter implements Filter {
 		// place your code here
 
 		// pass the request along the filter chain
-		
+		PrintWriter pw = response.getWriter();
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		HttpSession session  = req.getSession(false);
-		if(session.getAttribute("username") != null) {
+		
+		HttpSession session = req.getSession(false);
+		
+		Integer nbConnexion = (Integer) session.getAttribute("count");
+		
+		System.out.println(nbConnexion);
+		
+		if(nbConnexion <= 10) {
 			chain.doFilter(request, response);
 		}else {
-			res.sendRedirect(req.getContextPath()+"/connexion.html");
+			pw.println("NB de connexion limite atteint");
 		}
+		
+		
 		
 	}
 

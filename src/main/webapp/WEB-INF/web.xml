@@ -39,4 +39,23 @@
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/LoginFilter</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NbConFilter</display-name>
+    <servlet-name>NbConFilter</servlet-name>
+    <servlet-class>tp2.NbConFilter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NbConFilter</servlet-name>
+    <url-pattern>/NbConFilter</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>NbConFilter</display-name>
+    <filter-name>NbConFilter</filter-name>
+    <filter-class>tp2.NbConFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>NbConFilter</filter-name>
+    <url-pattern>/NbConFilter</url-pattern>
+  </filter-mapping>
 </web-app>

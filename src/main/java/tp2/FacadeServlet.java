@@ -45,7 +45,7 @@ public class FacadeServlet extends HttpServlet {
 		
 		
 		
-		if(session.getAttribute("username") == null && session.getAttribute("password") == null && !session.getAttribute("username").equals(username)) {
+		if(session.getAttribute("username") == null && session.getAttribute("password") == null) {
 			session.setAttribute("username", username);
 			session.setAttribute("password", password);
 			int count = 1;
